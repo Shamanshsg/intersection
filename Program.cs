@@ -126,11 +126,11 @@ class intersection
             if(lab <= lcd)
             {
                 point ctop = new point(b.x, a.y);
-                double Stop = area1(a,b,ctop);
+                double Stop = area1(a,b,ctop) + 1;
                 point cbot = new point(b.y, a.x);
-                double Sbot = area1(a,b,cbot);
-                double Sup = area1(a,c,ctop) + area1(b,c,ctop) + area1(a,b,c);
-                double Sd = area1(a,d,cbot) + area1(b,d,cbot) + area1(a,b,d);
+                double Sbot = area1(a,b,cbot) - 1;
+                double Sup = area1(a,c,ctop) + area1(b,c,ctop) + area1(a,b,c) + 1;
+                double Sd = area1(a,d,cbot) + area1(b,d,cbot) + area1(a,b,d) - 1;
                 if((Stop == Sup && Sbot != Sd) || (Stop != Sup && Sbot == Sd) || (Stop != Sup && Sbot != Sd))
                 {
                     return true;
@@ -143,11 +143,11 @@ class intersection
             else
             {
                 point ctop = new point(d.x, c.y);
-                double Stop = area1(c,d,ctop);
+                double Stop = area1(c,d,ctop) + 1;
                 point cbot = new point(d.y, c.x);
-                double Sbot = area1(c,d,cbot);
-                double Sup = area1(c,a,ctop) + area1(d,a,ctop) + area1(c,d,a);
-                double Sd = area1(c,d,cbot) + area1(d,b,cbot) + area1(c,d,b);
+                double Sbot = area1(c,d,cbot) - 1;
+                double Sup = area1(c,a,ctop) + area1(d,a,ctop) + area1(c,d,a) + 1;
+                double Sd = area1(c,d,cbot) + area1(d,b,cbot) + area1(c,d,b) - 1;
                 if((Stop == Sup && Sbot != Sd) || (Stop != Sup && Sbot == Sd) || (Stop != Sup && Sbot != Sd))
                 {
                     return true;
