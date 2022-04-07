@@ -1,0 +1,15 @@
+C:\c#\intersection\bin\Debug\net6.0\intersection.exe
+C:\c#\intersection\bin\Debug\net6.0\intersection.deps.json
+C:\c#\intersection\bin\Debug\net6.0\intersection.runtimeconfig.json
+C:\c#\intersection\bin\Debug\net6.0\intersection.dll
+C:\c#\intersection\bin\Debug\net6.0\intersection.pdb
+C:\c#\intersection\obj\Debug\net6.0\intersection.csproj.AssemblyReference.cache
+C:\c#\intersection\obj\Debug\net6.0\intersection.GeneratedMSBuildEditorConfig.editorconfig
+C:\c#\intersection\obj\Debug\net6.0\intersection.AssemblyInfoInputs.cache
+C:\c#\intersection\obj\Debug\net6.0\intersection.AssemblyInfo.cs
+C:\c#\intersection\obj\Debug\net6.0\intersection.csproj.CoreCompileInputs.cache
+C:\c#\intersection\obj\Debug\net6.0\intersection.dll
+C:\c#\intersection\obj\Debug\net6.0\refint\intersection.dll
+C:\c#\intersection\obj\Debug\net6.0\intersection.pdb
+C:\c#\intersection\obj\Debug\net6.0\intersection.genruntimeconfig.cache
+C:\c#\intersection\obj\Debug\net6.0\ref\intersection.dll
