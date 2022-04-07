@@ -12,15 +12,15 @@ class intersection
     {
         System.Console.WriteLine("1 прямая - 1");
         System.Console.WriteLine("2 прямая - 2");
-        int t = Convert.ToInt32(Console.ReadLine());
+        double t = Convert.ToInt32(Console.ReadLine());
         System.Console.WriteLine("Точка a (x,y)");
-        point a = new point(Convert.ToInt32(Console.ReadLine()),Convert.ToInt32(Console.ReadLine()));
+        point a = new point(Convert.ToDouble(Console.ReadLine()),Convert.ToDouble(Console.ReadLine()));
         System.Console.WriteLine("Точка b (x,y)");
-        point b = new point(Convert.ToInt32(Console.ReadLine()),Convert.ToInt32(Console.ReadLine()));
+        point b = new point(Convert.ToDouble(Console.ReadLine()),Convert.ToDouble(Console.ReadLine()));
         System.Console.WriteLine("Точка c (x,y)");
-        point c = new point(Convert.ToInt32(Console.ReadLine()),Convert.ToInt32(Console.ReadLine()));
+        point c = new point(Convert.ToDouble(Console.ReadLine()),Convert.ToDouble(Console.ReadLine()));
         System.Console.WriteLine("Точка d (x,y)");
-        point d = new point(Convert.ToInt32(Console.ReadLine()),Convert.ToInt32(Console.ReadLine()));
+        point d = new point(Convert.ToDouble(Console.ReadLine()),Convert.ToDouble(Console.ReadLine()));
         
         switch(t)
         {
@@ -50,7 +50,7 @@ class intersection
         }
     }
 
-    static int area (point a, point b,point c)
+    static double area (point a, point b,point c)
     {
         return (b.x - a.x) * (c.y - a.y) - (b.y - a.y)*(c.x - a.x);
     }
@@ -63,19 +63,19 @@ class intersection
         area(c,d,a)*area(c,d,b) <= 0 ;
     }
 
-    static bool between (int a, int b, double c)
+    static bool between (double a, double b, double c)
     {
         return Min(a,b) <= c + eps && c <= Max(a,b) + eps; 
     }
 
-    static bool inter1 (int a , int b, int c, int d)
+    static bool inter1 (double a , double b, double c, double d)
     {
         if(a > b){Swap(ref a,ref b);}
         if(c > d){Swap(ref c,ref d);}
         return Max(a,c) <= Min(b,d);
     }
 
-    static int det (int a, int b, int c, int d)
+    static double det (double a, double b, double c, double d)
     {
         return a*d - b*c;
     }
@@ -88,19 +88,19 @@ class intersection
             rhs = temp;
         }
 //1 внизу    2 вверху
-    static int area2 (point a, point b,point c)
+    static double area2 (point a, point b,point c)
     {
         return (b.x - a.x) * (c.y - a.y) - (b.y - a.y)*(c.x - a.x);
     }
-    static int area1 (point a, point b,point c)
+    static double area1 (point a, point b,point c)
     {
         return Abs(area2(a, b, c) / 2);
     } 
     static bool interl(point a, point b,point c, point d)
     {
-        int A1 = a.y-b.y,  B1 = b.x-a.x,  C1 = -A1*a.x - B1*a.y;
-        int A2 = c.y-d.y,  B2 = d.x-c.x,  C2 = -A2*c.x - B2*c.y;
-        int zn = det (A1, B1, A2, B2);
+        double A1 = a.y-b.y,  B1 = b.x-a.x,  C1 = -A1*a.x - B1*a.y;
+        double A2 = c.y-d.y,  B2 = d.x-c.x,  C2 = -A2*c.x - B2*c.y;
+        double zn = det (A1, B1, A2, B2);
         if (zn != 0) {
 		x = - det (C1, B1, C2, B2) * 1.0 / zn;
 		y = - det (A1, C1, A2, C2) * 1.0 / zn;
@@ -171,9 +171,9 @@ class intersection
 
 public class point
 {
-    public int x;
-    public int y;
-    public point(int x1, int y1)
+    public double x;
+    public double y;
+    public point(double x1, double y1)
     {
         x = x1;
         y = y1;
