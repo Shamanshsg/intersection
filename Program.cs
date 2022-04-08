@@ -139,9 +139,9 @@ class intersection
         double B = a.y - k*a.x;
         if((c.y >= k*c.x + B || d.y >=k*d.x + B) && (c.y <= k*c.x + B || d.y <= k*d.x + B ))
         {
-            double k1 = (c.y - d.y)/(c.x - d.x);
-            double B1 = c.y - k*c.x;
-            if((a.y >= k1*a.x + B1 || b.y >=k1*b.x + B1) && (a.y <= k1*a.x + B1 || b.y <= k1*b.x + B1 ))
+            k = (c.y - d.y)/(c.x - d.x);
+            B = c.y - k*c.x;
+            if((a.y >= k*a.x + B || b.y >=k*b.x + B) && (a.y <= k*a.x + B || b.y <= k*b.x + B ))
             {
                 return true;
             }
