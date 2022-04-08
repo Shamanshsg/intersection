@@ -10,44 +10,62 @@ class intersection
     const double eps = 0.0000000000001;
     static void Main()
     {
-        System.Console.WriteLine("1 прямая - 1");
-        System.Console.WriteLine("2 прямая - 2");
-        double t = Convert.ToInt32(Console.ReadLine());
-        System.Console.WriteLine("Точка a (x,y)");
-        point a = new point(Convert.ToDouble(Console.ReadLine()),Convert.ToDouble(Console.ReadLine()));
-        System.Console.WriteLine("Точка b (x,y)");
-        point b = new point(Convert.ToDouble(Console.ReadLine()),Convert.ToDouble(Console.ReadLine()));
-        System.Console.WriteLine("Точка c (x,y)");
-        point c = new point(Convert.ToDouble(Console.ReadLine()),Convert.ToDouble(Console.ReadLine()));
-        System.Console.WriteLine("Точка d (x,y)");
-        point d = new point(Convert.ToDouble(Console.ReadLine()),Convert.ToDouble(Console.ReadLine()));
-        
-        switch(t)
+        System.Console.WriteLine("Два отрезка - 1");
+        System.Console.WriteLine("Прямая и окружность - 2");
+        int e = Convert.ToInt32(Console.ReadLine());
+        switch (e)
         {
             case 1:
-            if(interl1(a,b,c,d))
-            {
-                System.Console.WriteLine("Они пересекаются");
-            }
-            else
-            {
-                System.Console.WriteLine("Они не пересекаются");
-            }
+                System.Console.WriteLine("1 прямая - 1");
+                System.Console.WriteLine("2 прямая - 2");
+                double t = Convert.ToInt32(Console.ReadLine());
+                System.Console.WriteLine("Точка a (x,y)");
+                point a = new point(Convert.ToDouble(Console.ReadLine()),Convert.ToDouble(Console.ReadLine()));
+                System.Console.WriteLine("Точка b (x,y)");
+                point b = new point(Convert.ToDouble(Console.ReadLine()),Convert.ToDouble(Console.ReadLine()));
+                System.Console.WriteLine("Точка c (x,y)");
+                point c = new point(Convert.ToDouble(Console.ReadLine()),Convert.ToDouble(Console.ReadLine()));
+                System.Console.WriteLine("Точка d (x,y)");
+                point d = new point(Convert.ToDouble(Console.ReadLine()),Convert.ToDouble(Console.ReadLine()));
+                switch(t)
+                {
+                    case 1:
+                    if(interl1(a,b,c,d))
+                    {
+                        System.Console.WriteLine("Они пересекаются");
+                    }
+                    else
+                    {
+                        System.Console.WriteLine("Они не пересекаются");
+                    }
 
+                    break;
+
+                    case 2:  
+                        if (interl(a,b,c,d) )
+                        {
+                            System.Console.WriteLine("Они пересекаются");
+                            System.Console.WriteLine($"x = {x}   y = {y}");
+                        }
+                        else
+                        {
+                            System.Console.WriteLine("Они не пересекаются");
+                        }
+                    break;
+                }       
             break;
 
-            case 2:  
-                if (interl(a,b,c,d) )
-                {
-                    System.Console.WriteLine("Они пересекаются");
-                    System.Console.WriteLine($"x = {x}   y = {y}");
-                }
-                else
-                {
-                    System.Console.WriteLine("Они не пересекаются");
-                }
+            case 2:
+                System.Console.WriteLine("Введите A, B, C");
+                line l = new line(Convert.ToDouble(Console.ReadLine()),Convert.ToDouble(Console.ReadLine()), Convert.ToDouble(Console.ReadLine()));
+                System.Console.WriteLine("Введите радиус и x и y");
+                circle cc1 = new circle(Convert.ToDouble(Console.ReadLine()), Convert.ToDouble(Console.ReadLine()), Convert.ToDouble(Console.ReadLine()));
+                double C =l.C + ((cc1.x*l.A) + (cc1.y)*l.B);
+                interc(l.A, l.B, C, cc1.r, cc1);
             break;
         }
+        
+        
     }
 
     static double area (point a, point b,point c)
@@ -117,12 +135,12 @@ class intersection
 // A выше чем B
     static bool interl1(point a, point b,point c, point d)
     {
+        double lab = Sqrt(Pow(a.x - b.x, 2) + Pow(a.y - b.y, 2)); 
+        double lcd = Sqrt(Pow(c.x - d.x, 2) + Pow(c.y - d.y, 2));
         double k = (a.y - b.y)/(a.x - b.x);
         double B = a.y - k*a.x;
         if((c.y >= k*c.x + B || d.y >=k*d.x + B) && (c.y <= k*c.x + B || d.y <= k*d.x + B ))
         {
-            double lab = Sqrt(Pow(a.x - b.x, 2) + Pow(a.y - b.y, 2)); 
-            double lcd = Sqrt(Pow(c.x - d.x, 2) + Pow(c.y - d.y, 2));
             if(lab <= lcd)
             {
                 point ctop = new point(b.x, a.y);
@@ -164,6 +182,32 @@ class intersection
         }
     }
 
+
+    static void interc(double A, double B, double C, double r, circle cc1)
+    {
+        double x0 = -A*C/(A*A+B*B),  y0 = -B*C/(A*A+B*B);
+        if (C*C > r*r*(A*A+B*B) + eps)
+        {
+            System.Console.WriteLine("Пересечения нет");
+        }
+        else if (Abs(C*C - r*r*(A*A+B*B)) < eps)
+        {
+            System.Console.WriteLine("Пересечение в 1 точке");
+            System.Console.WriteLine($"({x0 + cc1.x}, {y0 + cc1.y})");
+        }
+        else
+        {
+            double d = r*r - C*C/(A*A+B*B);
+            double mult = Sqrt(d / (A*A+B*B));
+            double ax,ay,bx,by;
+            ax = x0 + B * mult;
+            bx = x0 - B * mult;
+            ay = y0 - B * mult;
+            by = y0 + B * mult;
+            System.Console.WriteLine("персечение в 2-х точках");
+            System.Console.WriteLine($"({ax + cc1.x}, {ay + cc1.y}) .... ({bx + cc1.x}, {by + cc1.y})");
+        }
+    }
 }
 
 
@@ -177,5 +221,33 @@ public class point
     {
         x = x1;
         y = y1;
+    }
+}
+
+public class circle
+{
+    public double x;
+    public double y;
+    public double r;
+
+    public circle(double r1, double x1, double y1)
+    {
+        x = x1;
+        y = y1;
+        r = Sqrt(r1);
+    }
+}
+
+public class line
+{
+    public double A;
+    public double B;
+    public double C;
+
+    public line (double A1, double B1, double C1)
+    {
+        A = A1;
+        B = B1;
+        C = C1;
     }
 }
