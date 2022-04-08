@@ -135,46 +135,17 @@ class intersection
 // A выше чем B
     static bool interl1(point a, point b,point c, point d)
     {
-        double lab = Sqrt(Pow(a.x - b.x, 2) + Pow(a.y - b.y, 2)); 
-        double lcd = Sqrt(Pow(c.x - d.x, 2) + Pow(c.y - d.y, 2));
         double k = (a.y - b.y)/(a.x - b.x);
         double B = a.y - k*a.x;
         if((c.y >= k*c.x + B || d.y >=k*d.x + B) && (c.y <= k*c.x + B || d.y <= k*d.x + B ))
         {
-            if(lab <= lcd)
+            double k1 = (c.y - d.y)/(c.x - d.x);
+            double B1 = c.y - k*c.x;
+            if((a.y >= k1*a.x + B1 || b.y >=k1*b.x + B1) && (a.y <= k1*a.x + B1 || b.y <= k1*b.x + B1 ))
             {
-                point ctop = new point(b.x, a.y);
-                double Stop = area1(a,b,ctop) + 1;
-                point cbot = new point(b.y, a.x);
-                double Sbot = area1(a,b,cbot) - 1;
-                double Sup = area1(a,c,ctop) + area1(b,c,ctop) + area1(a,b,c) + 1;
-                double Sd = area1(a,d,cbot) + area1(b,d,cbot) + area1(a,b,d) - 1;
-                if((Stop == Sup && Sbot != Sd) || (Stop != Sup && Sbot == Sd) || (Stop != Sup && Sbot != Sd))
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return true;
             }
-            else
-            {
-                point ctop = new point(d.x, c.y);
-                double Stop = area1(c,d,ctop) + 1;
-                point cbot = new point(d.y, c.x);
-                double Sbot = area1(c,d,cbot) - 1;
-                double Sup = area1(c,a,ctop) + area1(d,a,ctop) + area1(c,d,a) + 1;
-                double Sd = area1(c,d,cbot) + area1(d,b,cbot) + area1(c,d,b) - 1;
-                if((Stop == Sup && Sbot != Sd) || (Stop != Sup && Sbot == Sd) || (Stop != Sup && Sbot != Sd))
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
+            else{return false;}
         }
         else
         {
